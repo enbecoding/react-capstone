@@ -1,0 +1,21 @@
+header {
+  position: sticky;
+  height: 80px;
+  width: 100vw;
+  border-top-style: hidden;
+  border-bottom: 2px;
+  color: #FFF;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  top: 0;
+  background-color: #222222;
+  box-sizing: border-box;
+}
+
+.nav {
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
