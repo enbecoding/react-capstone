@@ -1,14 +1,41 @@
 .mainContainer {
   width: 100vw;
   display:flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  gap: 100px;
 }
 
 .quoteContainer {
-  gap: 20px;
-  padding: 10px;
+  gap: 10px;
+  padding: 50px;
   display: inline;
 }
 
+.healthLogContainer {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 50px;
+  color:#FFF;
+  padding: 10px;
+}
+
+.foodItemContainer {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  background-color: #FFF;
+  color: black;
+}
+
+.input_text {
+  width: 250px;
+}
+
+.input_number {
+ width: 120px;
+}
