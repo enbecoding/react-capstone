@@ -1,22 +1,19 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Button } from 'react-bootstrap'
 import styles from "./Header.module.css"
 import { useAuth } from '../../store/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
-  const [error, setError] = useState("")
   const { logout } = useAuth()
   const navigate = useNavigate()
   
   async function handleLogout() {
-    setError('')
-
     try {
       await logout()
       navigate("/login")
     } catch {
-      setError('Failed to log out')
+     
     }
   }
 
