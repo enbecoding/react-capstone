@@ -1,4 +1,4 @@
-header {
+.nav {
   position: sticky;
   height: 80px;
   width: 100vw;
@@ -13,10 +13,9 @@ header {
   box-sizing: border-box;
 }
 
-.nav {
-  width: 100vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 1rem;
+.nav a {
+  text-decoration: none;
+  color: #FFF;
+  font-size: 32px;
+  text-align: center;
 }

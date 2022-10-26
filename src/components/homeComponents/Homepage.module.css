@@ -1,0 +1,14 @@
+.mainContainer {
+  width: 100vw;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.quoteContainer {
+  gap: 20px;
+  padding: 10px;
+  display: inline;
+}
+
