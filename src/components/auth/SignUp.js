@@ -67,7 +67,7 @@ const SignUp = () => {
             </Card.Body>
           </Card>
           <div className="w-100-center mt-2">
-            Already Have an account? <Link to="/login">Log In</Link>
+            <Link to="/login">Log In</Link>
           </div>
         </div>
       </Container>
