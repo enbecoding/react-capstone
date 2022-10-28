@@ -14,7 +14,7 @@
   display: inline;
 }
 
-.healthLogContainer {
+.appControlsContainer {
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -28,14 +28,115 @@
   width: 50%;
   display: flex;
   justify-content: center;
-  background-color: #FFF;
-  color: black;
+  gap: 10px;
 }
 
-.input_text {
-  width: 250px;
+.app_controls_inputs {
+  padding: 5px;
+  margin: 10px;
+  font-size: 18px;
+  gap: 10px;
+  display: flex;
+
 }
 
-.input_number {
- width: 120px;
+.app__controls_delete {
+  background-color: #3d3d3d;
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+.app_controls_delete ::hover {
+  background-color: #232323;
+}
+
+.add_meal_btn {
+  background-color: #3d3d3d;
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+.listContainer {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.meals_container_wrapper {
+  color: #FFF;
+  height: auto;
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.meals_container_wrapper_inner {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 5px;
+  font-size: 18px;
+  font-weight: 700;
+  gap: 200px;
+}
+
+.delete_meal_btn {
+  background-color: #3d3d3d;
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+.app__modal {
+  width: 300px;
+  height: 250px;
+  background: gray;
+  border: 1px solid black;
+  position: absolute;
+  color:#FFF;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 5px;
+}
+
+.btn__close_modal {
+  background-color: #3d3d3d;
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 5px;
+  width: 50%;
+}
+
+.app__meals__container__select select{
+  outline: none;
+  padding: 5px;
+  font-size: 18px;
+  border: 1px solid rgba(0,0,0,0.2);
 }

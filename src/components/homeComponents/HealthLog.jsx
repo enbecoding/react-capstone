@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Homepage.module.css";
 import { Button } from "react-bootstrap";
+import axios from "axios";
 
 const HealthLog = () => {
   const [foodItem, setFoodItem] = useState("");
@@ -8,8 +9,26 @@ const HealthLog = () => {
   const [workoutItem, setWorkoutItem] = useState("");
   const [workoutCalorie, setWorkoutCalorie] = useState(0);
 
-  const displayInfo = () => {
-    console.log(foodItem + foodCalorie + workoutItem + workoutCalorie);
+  const addFoodItem = () => {
+    console.log(foodItem)
+    axios.post("http://localhost:3003/foodlogs", { 
+      name: foodItem,
+      foodcal: foodCalorie  
+    })
+    // axios({
+    //   method:"post",
+    //   url:"http://localhost:3003/foodlogs",
+    //   headers: {
+    //     "Access-Control-Allow-Origin": "*"
+    //   },
+    //   body:{ 
+    //     name: foodItem,
+    //     foodcal: foodCalorie  
+    //   }
+    // })
+    .then(() => {
+      console.log("success")
+    })
   };
 
   return (
@@ -33,7 +52,7 @@ const HealthLog = () => {
               setFoodCarloie(e.target.value);
             }}
           />
-          <Button>+</Button>
+          <Button onClick={addFoodItem}>+</Button>
         </div>
         <div className={styles.workoutContainer}>
           <h3>Workouts Completed</h3>
