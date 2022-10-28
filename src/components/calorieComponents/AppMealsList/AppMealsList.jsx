@@ -7,7 +7,7 @@ const AppMealsList = ({ meals, deleteMealHandler }) => {
     <div className={styles.meals_container_wrapper}>
       {meals.map((meal, index) => (
         <div key={index} className={styles.meals_container_wrapper_inner}>
-          <div>{`${meal.mealName} : ${meal.calories} Calories`}</div>
+          <div>{`${meal.name} : ${meal.calories_amt} Calories`}</div>
           <div>
             <button
               className={styles.delete_meal_btn}

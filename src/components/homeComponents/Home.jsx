@@ -8,6 +8,8 @@ import AppControlsInputs from "../calorieComponents/AppControls/AppControlsInput
 import AppMealsList from "../calorieComponents/AppMealsList/AppMealsList";
 import AppModal from "../calorieComponents/AppModal/AppModal";
 import AppMealsFilter from "../calorieComponents/AppMealsFilter/AppMealsFilter";
+import axios from 'axios'
+import { useAuth } from "../../store/AuthContext";
 
 const Home = () => {
   const [meals, setMeals] = useState([]);
@@ -15,6 +17,7 @@ const Home = () => {
   const [calories, setCalories] = useState(0);
   const [openModal, setOpenModal] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState("");
+  const { currentUser } = useAuth()
 
   const addMealsHandler = () => {
     const oldMeals = [...meals];
@@ -26,11 +29,11 @@ const Home = () => {
 
     const newMeals = oldMeals.concat(meal);
 
-    if (calories <= 0 || meals === "") {
+    if (calories.calories_amt <= 0 || meals.name === "") {
       setOpenModal(true);
     } else {
       setMeals(newMeals);
-      localStorage.setItem("meals", JSON.stringify(newMeals));
+      // localStorage.setItem("meals", JSON.stringify(newMeals));
     }
 
     setMealName("");
@@ -38,23 +41,30 @@ const Home = () => {
   };
 
   const deleteMealHandler = (id) => {
-    const oldMeals = [...meals];
-    const newMeals = oldMeals.filter((meal) => meal.id !== id);
+    // const oldMeals = [...meals];
+    // const newMeals = oldMeals.filter((meal) => meal.id !== id);
 
-    setMeals(newMeals);
-    localStorage.setItem("meals", JSON.stringify(newMeals));
+    // setMeals(newMeals);
+    // localStorage.setItem("meals", JSON.stringify(newMeals));
+    axios.delete(`http://localhost:3009/api/items/${id}`).then((res) => {
+      getFoodItems()
+    })
   };
 
   const deleteAllMeals = () => {
-    setMeals([]);
-    localStorage.clear();
+    // setMeals([]);
+    // localStorage.clear();
+    axios.delete(`http://localhost:3009/api/deleteitems/${currentUser.uid}`).then((res) => {
+      setMeals([])
+    })
   };
 
   const total = meals
-    .map((meal) => meal.calories)
+    .map((meal) => meal.calories_amt)
     .reduce((acc, value) => acc + +value, 0);
 
   useEffect(() => {
+    getFoodItems()
     const oldState = [...meals];
     if (selectedFilter === "Ascending") {
       const ascendingMeals = oldState.sort((a, b) => a.calories - b.calories);
@@ -64,6 +74,12 @@ const Home = () => {
       setMeals(descendingMeals);
     }
   }, [selectedFilter]);
+
+  const getFoodItems = () => {
+    axios.get(`http://localhost:3009/api/items/${currentUser.uid}`).then((res)=> {
+      setMeals(res.data)
+    })
+  }
 
   return (
     <>
@@ -84,6 +100,7 @@ const Home = () => {
             calories={calories}
             setMealName={setMealName}
             setCalories={setCalories}
+            getFoodItems={getFoodItems}
           />
         </div>
         <div className={styles.listContainer}>

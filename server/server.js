@@ -1,16 +1,52 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const ITEMS = require('./config/db.json')
+const mysql = require('mysql')
 
 app.use(cors());
 app.use(express.json())
 
-app.get("/api/items", (req, res) => {
-  res.status(200).send(ITEMS.items)
-});
+const db = mysql.createConnection({
+  host:"localhost",
+  user:"root",
+  password:"password",
+  database:"reacthealthlog"
+})
+db.connect()
 
-// app.post('/api/items', ())
+// db.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+//   if (error) throw error;
+//   console.log('The solution is: ', results[0].solution);
+// });
+
+app.get('/api/items/:id', async (req, res) => {
+  db.query(`SELECT * FROM fooditems WHERE userid = '${req.params.id}'`, (err, results) => {
+    res.status(200).send(results)
+  })
+})
+
+app.post('/api/items', async (req, res) => {
+  const {name, calories_amt, userid} = req.body
+  db.query(`INSERT INTO fooditems (name, calories_amt, userid) 
+  VALUES ('${name}', '${calories_amt}', '${userid}');
+  `, (err, results) => {
+    res.status(200).send(results)
+  })
+})
+
+app.delete('/api/items/:id', async (req,res) => {
+  db.query(`DELETE FROM fooditems WHERE id = '${req.params.id}'`, (err, results) => {
+    res.status(200).send(results)
+  })
+})
+
+app.delete('/api/deleteitems/:id', async (req,res) => {
+  db.query(`DELETE FROM fooditems WHERE userid = '${req.params.id}'`, (err, results) => {
+    if (err) throw err
+    console.log(results)
+    res.status(200).send(results)
+  })
+})
 
 const PORT = 3009
 app.listen(PORT, () => {

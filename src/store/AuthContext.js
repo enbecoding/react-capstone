@@ -9,15 +9,17 @@ export function useAuth() {
 
 export const AuthProvider = ({ children }) => {
 
-  const [currentUser, setCurrentUser] = useState()
+  const [currentUser, setCurrentUser] = useState("")
   const [loading, setLoading] = useState(true)
 
   function signup(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password)
+    auth.createUserWithEmailAndPassword(email, password)
   }
 
   function login(email, password) {
-    return auth.signInWithEmailAndPassword(email, password)
+     auth.signInWithEmailAndPassword(email, password).then((usercredentials) => {
+      setCurrentUser(usercredentials.user)
+     })
   }
 
   function logout() {

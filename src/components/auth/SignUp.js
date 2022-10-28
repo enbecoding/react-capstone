@@ -34,10 +34,7 @@ const SignUp = () => {
 
   return (
     <>
-      <Container
-        className="d-flex align-items-center justify-content-center"
-        style={{ minHeight: "100vh" }}
-      >
+      <div>("")</div>
         <div className={styles.auth_container}>
           <Card>
             <Card.Body>
@@ -70,7 +67,6 @@ const SignUp = () => {
             <Link to="/login">Log In</Link>
           </div>
         </div>
-      </Container>
     </>
   );
 };
